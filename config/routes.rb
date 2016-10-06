@@ -1,6 +1,16 @@
+
 Rails.application.routes.draw do
-  devise_for :users
   root to: 'pages#home'
+  devise_for :users
+
+  namespace :api, defaults: { format: :json } do
+    namespace :v1 do
+      resources :pinboards, only: [ :index :show ]
+    end
+  end
+
+
+end
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
